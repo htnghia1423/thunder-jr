@@ -14,13 +14,15 @@ client.on("ready", () => {
   console.log(`${client.user.tag} đã thức tỉnh!`);
 });
 
-// client.on("messageCreate", (message) => {
-//   if (message.author.bot) return;
-//   if (message.content === "hello") {
-//     message.reply("hello");
-//   }
-// });
+//Rep tin nhắn cố định từ user
+client.on("messageCreate", (message) => {
+  if (message.author.bot) return;
+  if (message.content === "hello") {
+    message.reply("Chào anh yêu🥰");
+  }
+});
 
+//Interact với các lệnh từ user
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
@@ -29,7 +31,7 @@ client.on("interactionCreate", async (interaction) => {
       interaction.reply("Pong!");
       break;
     case "hello":
-      interaction.reply("Hey!");
+      interaction.reply("Chào anh yêu🥰");
       break;
     case "add":
       const num1 = interaction.options.getNumber("num1");
@@ -38,20 +40,37 @@ client.on("interactionCreate", async (interaction) => {
       break;
     case "embed":
       const embed = new EmbedBuilder()
-        .setTitle("A slick little embed")
-        .setDescription("Hello, this is a slick embed!")
+        .setTitle("ThundeR STorM")
+        .setDescription("Xin chào, tôi là đệ của Sấm⚡")
         .setColor("Random")
         .addFields(
           {
-            name: "Field 1",
-            value: "Hello world!",
+            name: "Ưu điểm",
+            value: "Láo",
             inline: true,
           },
           {
-            name: "Field 2",
-            value: "Hello world!",
+            name: "Nhược điểm",
+            value: "Lười",
             inline: true,
           }
+        )
+        .setFooter({
+          text: "Chào các con vợ!",
+          iconURL:
+            "https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-1/457031275_1623559424876817_7373961573867684639_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=105&ccb=1-7&_nc_sid=0ecb9b&_nc_eui2=AeE1sWPA8ZFd9HKiUAM63xvbJgzkKyYWVWUmDOQrJhZVZX4SB0Se696QueMQG3ZGFkzm-lZgOpBp5i2ROdKUJZNG&_nc_ohc=pNeQDPBypNsQ7kNvgEkJ1Ki&_nc_zt=24&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=A2ilkpNL5NkPaxR3Xvx8pxx&oh=00_AYC2lnxexUJ6CKpfcFXQIhS5v0-9y5b8Sd015EGcEWkrBw&oe=676026AB",
+        })
+        .setTimestamp()
+        .setURL("https://github.com/htnghia1423")
+        .setImage("https://avatars.githubusercontent.com/u/137130942?v=4")
+        .setAuthor({
+          name: "ThundeR",
+          iconURL:
+            "https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-1/457031275_1623559424876817_7373961573867684639_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=105&ccb=1-7&_nc_sid=0ecb9b&_nc_eui2=AeE1sWPA8ZFd9HKiUAM63xvbJgzkKyYWVWUmDOQrJhZVZX4SB0Se696QueMQG3ZGFkzm-lZgOpBp5i2ROdKUJZNG&_nc_ohc=pNeQDPBypNsQ7kNvgEkJ1Ki&_nc_zt=24&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=A2ilkpNL5NkPaxR3Xvx8pxx&oh=00_AYC2lnxexUJ6CKpfcFXQIhS5v0-9y5b8Sd015EGcEWkrBw&oe=676026AB",
+          url: "https://github.com/htnghia1423",
+        })
+        .setThumbnail(
+          "https://cdn.discordapp.com/avatars/681854326238740491/fd3c48dde010644f7476d6a19e961ac4.webp?size=100"
         );
       interaction.reply({ embeds: [embed] });
       break;

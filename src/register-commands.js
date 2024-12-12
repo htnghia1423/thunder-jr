@@ -2,7 +2,6 @@ require("dotenv").config();
 const { REST, Routes, ApplicationCommandOptionType } = require("discord.js");
 
 const commands = [
-  /**
   {
     name: "ping",
     description: "Replies with Pong!",
@@ -42,12 +41,10 @@ const commands = [
         required: true,
       },
     ],
-  }, 
-  **/
+  },
   {
     name: "embed",
     description: "Send an embed message",
-    
   },
 ];
 
