@@ -1,5 +1,10 @@
 require("dotenv").config();
-const { Client, IntentsBitField, EmbedBuilder } = require("discord.js");
+const {
+  Client,
+  IntentsBitField,
+  EmbedBuilder,
+  ActivityType,
+} = require("discord.js");
 
 const client = new Client({
   intents: [
@@ -10,8 +15,31 @@ const client = new Client({
   ],
 });
 
+let status = [
+  {
+    name: "Mẹ mày",
+    type: ActivityType.Playing,
+    url: "https://www.youtube.com/watch?v=FXqxKSYPY-o",
+  },
+  {
+    name: "Mẹ mày",
+    type: ActivityType.Streaming,
+    url: "https://www.youtube.com/watch?v=FXqxKSYPY-o",
+  },
+  {
+    name: "Mẹ mày",
+    type: ActivityType.Watching,
+    url: "https://www.youtube.com/watch?v=FXqxKSYPY-o",
+  },
+];
+
 client.on("ready", () => {
   console.log(`${client.user.tag} đã thức tỉnh!`);
+
+  setInterval(() => {
+    let randomStatus = status[Math.floor(Math.random() * status.length)];
+    client.user.setActivity(randomStatus);
+  }, 10000);
 });
 
 //Rep tin nhắn cố định từ user

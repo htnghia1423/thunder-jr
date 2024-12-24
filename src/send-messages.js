@@ -70,12 +70,12 @@ client.on("interactionCreate", async (interaction) => {
     const hasRole = interaction.member.roles.cache.has(role.id);
     if (hasRole) {
       await interaction.member.roles.remove(role);
-      interaction.editReply(`Removed ${role.name}`);
+      interaction.editReply(`Removed ${role}`);
       return;
     }
 
     await interaction.member.roles.add(role);
-    await interaction.editReply(`Added ${role.name}`);
+    await interaction.editReply(`Added ${role}`);
   } catch (error) {
     console.log(error);
   }
