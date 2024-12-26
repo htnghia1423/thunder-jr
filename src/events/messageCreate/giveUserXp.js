@@ -43,7 +43,7 @@ module.exports = async (client, message) => {
         level.level += 1;
 
         message.channel.send(
-          `Congrats ${message.author}, you leveled up to level ${level.level}!`
+          `Congrats ${message.author}, you leveled up to **level ${level.level}**!`
         );
       }
 
