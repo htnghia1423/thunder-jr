@@ -56,7 +56,7 @@ module.exports = {
         `Successfully kicked ${targetUser}!\nReason: ${reason}`
       );
     } catch (error) {
-      console.log("🪲 Có biến rồi Đại vương ơi: ", error);
+      console.log("🪲 Có biến ở Kicking rồi Đại vương ơi: ", error);
       await interaction.editReply(
         "There was an error trying to kick that user."
       );

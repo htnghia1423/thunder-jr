@@ -56,7 +56,7 @@ module.exports = {
         `Successfully banned ${targetUser}!\nReason: ${reason}`
       );
     } catch (error) {
-      console.log("🪲 Có biến rồi Đại vương ơi: ", error);
+      console.log("🪲 Có biến ở Banning rồi Đại vương ơi: ", error);
       await interaction.editReply(
         "There was an error trying to ban that user."
       );

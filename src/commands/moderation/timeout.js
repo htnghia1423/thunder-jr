@@ -83,7 +83,7 @@ module.exports = {
         })}.\nReason: ${reason}`
       );
     } catch (error) {
-      console.log("🪲 Có biến rồi Đại vương ơi: ", error);
+      console.log("🪲 Có biến ở Timming out rồi Đại vương ơi: ", error);
       await interaction.editReply(
         "There was an error trying to timeout that user."
       );
