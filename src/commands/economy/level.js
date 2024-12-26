@@ -55,12 +55,8 @@ module.exports = {
       }
     });
 
-    console.log(allLevels);
-
     let currentRank =
       allLevels.findIndex((lvl) => lvl.userId === targetUserId) + 1;
-
-    console.log(currentRank);
 
     Font.loadDefault();
 
