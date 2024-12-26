@@ -1,6 +1,6 @@
 const { Client, Message } = require("discord.js");
 const Level = require("../../models/Level");
-const caculateLevelXp = require("../../utils/caculateLevelXp");
+const calculateLevelXp = require("../../utils/calculateLevelXp");
 const { set } = require("mongoose");
 const cooldown = new Set();
 
@@ -38,7 +38,7 @@ module.exports = async (client, message) => {
     if (level) {
       level.xp += xpToGive;
 
-      if (level.xp > caculateLevelXp(level.level)) {
+      if (level.xp > calculateLevelXp(level.level)) {
         level.xp = 0;
         level.level += 1;
 
