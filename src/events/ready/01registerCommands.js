@@ -50,6 +50,6 @@ module.exports = async (client) => {
       }
     }
   } catch (error) {
-    console.log("🪲 Có biến rồi Đại vương ơi: ", error);
+    console.log("🪲 Có biến Register command rồi Đại vương ơi: ", error);
   }
 };
