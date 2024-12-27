@@ -13,7 +13,7 @@ module.exports = {
     const ping = reply.createdTimestamp - interaction.createdTimestamp;
 
     interaction.editReply(
-      `Pong! Client ping is ${ping}ms. Websocket ping is ${client.ws.ping}ms.`
+      `Pong! Client ping is **${ping}ms**. Websocket ping is **${client.ws.ping}ms**.`
     );
   },
 };

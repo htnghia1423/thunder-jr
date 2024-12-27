@@ -8,13 +8,13 @@ const Level = require("../../models/Level");
 const calculateLevelXp = require("../../utils/calculateLevelXp");
 const { RankCardBuilder, Font } = require("canvacord");
 
-/**
- *
- * @param {Client} client
- * @param {Interaction} interaction
- */
-
 module.exports = {
+  /**
+   *
+   * @param {Client} client
+   * @param {Interaction} interaction
+   */
+
   callback: async (client, interaction) => {
     if (!interaction.inGuild()) {
       interaction.reply("This command can only be used in a server");
