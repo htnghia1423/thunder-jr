@@ -1,6 +1,6 @@
 const { devs } = require("../../config.json");
 
-module.exports = (interaction, commandObj) => {
+module.exports = ({ interaction, commandObj }) => {
   if (commandObj.devOnly) {
     if (!devs.includes(interaction.user.id)) {
       interaction.reply({

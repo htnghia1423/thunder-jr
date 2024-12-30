@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require("discord.js");
 const User = require("../../models/User");
 
 module.exports = {
-  run: async ({ client, interaction }) => {
+  run: async ({ interaction, client, handler }) => {
     if (!interaction.inGuild()) {
       interaction.reply({
         content: "This command can only be used in a server.",
@@ -45,5 +45,7 @@ module.exports = {
         .setRequired(false)
     ),
 
-  // deleted: true,
+  options: {
+    // deleted: true,
+  },
 };

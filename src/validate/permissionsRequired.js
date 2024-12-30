@@ -1,4 +1,4 @@
-module.exports = (interaction, commandObj) => {
+module.exports = ({ interaction, commandObj }) => {
   if (commandObj.permissionsRquired?.lenght) {
     for (const permission of commandObj.permissionsRquired) {
       if (!interaction.member.permissions.has(permission)) {

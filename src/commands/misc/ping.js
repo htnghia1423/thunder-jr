@@ -11,7 +11,8 @@ module.exports = {
     .setName("ping")
     .setDescription("Replies with Pong!"),
 
-  devOnly: true,
-
-  // deleted: true,
+  options: {
+    devOnly: true,
+    // deleted: true,
+  },
 };

@@ -1,8 +1,8 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder } = require("discord.js");
 const AutoRole = require("../../models/AutoRole");
 
 module.exports = {
-  run: async ({ client, interaction }) => {
+  run: async ({ interaction, client, handler }) => {
     const subcommand = interaction.options.getSubcommand();
 
     switch (subcommand) {
@@ -96,8 +96,9 @@ module.exports = {
         .setDescription("Disable the auto-role feature for your server.")
     ),
 
-  permissionsRequired: [PermissionFlagsBits.Administrator],
-  botPermissions: [PermissionFlagsBits.ManageRoles],
-
-  //   deleled: true,
+  options: {
+    userPermissions: ["Administrator"],
+    botPermissions: ["ManageRoles"],
+    //   deleled: true,
+  },
 };

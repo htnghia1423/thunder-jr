@@ -4,7 +4,7 @@ const User = require("../../models/User");
 const dailyAmount = 1000;
 
 module.exports = {
-  run: async ({ client, interaction }) => {
+  run: async ({ interaction, client, handler }) => {
     if (!interaction.inGuild()) {
       interaction.reply({
         content: "This command can only be used in a server!",
@@ -52,5 +52,7 @@ module.exports = {
     .setName("daily")
     .setDescription("Claim your daily reward!"),
 
-  // deleted: true,
+  options: {
+    // deleted: true,
+  },
 };

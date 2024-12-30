@@ -1,8 +1,8 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder } = require("discord.js");
 const ms = require("ms");
 
 module.exports = {
-  run: async ({ client, interaction }) => {
+  run: async ({ interaction, client, handler }) => {
     const mentionable = interaction.options.get("target-user").value;
     const duration = interaction.options.get("duration").value;
     const reason =
@@ -99,8 +99,9 @@ module.exports = {
       option.setName("reason").setDescription("The reason for the timeout.")
     ),
 
-  permissionsRequired: [PermissionFlagsBits.MuteMembers],
-  botPermissions: [PermissionFlagsBits.MuteMembers],
-
-  //   deleted: true,
+  options: {
+    userPermissions: ["MuteMembers"],
+    botPermissions: ["MuteMembers"],
+    //   deleted: true,
+  },
 };

@@ -41,5 +41,7 @@ module.exports = {
         )
     ),
 
-  // deleted: true,
+  options: {
+    // deleted: true,
+  },
 };

@@ -1,7 +1,7 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
-  run: async ({ client, interaction }) => {
+  run: async ({ interaction, client, handler }) => {
     const targetUserId = interaction.options.get("target-user").value;
     const reason =
       interaction.options.get("reason")?.value || "No reason provided.";
@@ -65,8 +65,9 @@ module.exports = {
       option.setName("reason").setDescription("The reason for the kick.")
     ),
 
-  permissionsRequired: [PermissionFlagsBits.KickMembers],
-  botPermissions: [PermissionFlagsBits.KickMembers],
-
-  //   deleted: true,
+  options: {
+    userPermissions: ["KickMembers"],
+    botPermissions: ["KickMembers"],
+    // deleted: true,
+  },
 };

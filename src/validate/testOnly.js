@@ -1,6 +1,6 @@
 const { testServer } = require("../../config.json");
 
-module.exports = (interaction, commandObj) => {
+module.exports = ({ interaction, commandObj }) => {
   if (commandObj.testOnly) {
     if (!(interaction.guild.id === testServer)) {
       interaction.reply({

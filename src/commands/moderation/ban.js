@@ -1,7 +1,7 @@
-const { PermissionFlagsBits, SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
-  run: async ({ client, interaction }) => {
+  run: async ({ interaction, client, handler }) => {
     const targetUserId = interaction.options.get("target-user").value;
     const reason =
       interaction.options.get("reason")?.value || "No reason provided.";
@@ -65,8 +65,9 @@ module.exports = {
       option.setName("reason").setDescription("The reason for the ban.")
     ),
 
-  permissionsRequired: [PermissionFlagsBits.BanMembers],
-  botPermissions: [PermissionFlagsBits.BanMembers],
-
-  //   deleted: true,
+  options: {
+    userPermissions: ["BanMembers"],
+    botPermissions: ["BanMembers"],
+    //   deleted: true,
+  },
 };

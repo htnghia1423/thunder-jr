@@ -4,7 +4,7 @@ const calculateLevelXp = require("../../utils/calculateLevelXp");
 const { RankCardBuilder, Font } = require("canvacord");
 
 module.exports = {
-  run: async ({ client, interaction }) => {
+  run: async ({ interaction, client, handler }) => {
     if (!interaction.inGuild()) {
       interaction.reply("This command can only be used in a server");
       return;
@@ -79,5 +79,7 @@ module.exports = {
         .setRequired(false)
     ),
 
-  // deleted: true,
+  options: {
+    // deleted: true,
+  },
 };
