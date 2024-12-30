@@ -1,21 +1,10 @@
-const {
-  Client,
-  Interaction,
-  ApplicationCommandOptionType,
-  AttachmentBuilder,
-} = require("discord.js");
+const { SlashCommandBuilder, AttachmentBuilder } = require("discord.js");
 const Level = require("../../models/Level");
 const calculateLevelXp = require("../../utils/calculateLevelXp");
 const { RankCardBuilder, Font } = require("canvacord");
 
 module.exports = {
-  /**
-   *
-   * @param {Client} client
-   * @param {Interaction} interaction
-   */
-
-  callback: async (client, interaction) => {
+  run: async ({ client, interaction }) => {
     if (!interaction.inGuild()) {
       interaction.reply("This command can only be used in a server");
       return;
@@ -80,13 +69,15 @@ module.exports = {
     });
   },
 
-  name: "level",
-  description: "Check your or someone's level.",
-  options: [
-    {
-      name: "target-user",
-      description: "The user you want to check the level of",
-      type: ApplicationCommandOptionType.Mentionable,
-    },
-  ],
+  data: new SlashCommandBuilder()
+    .setName("level")
+    .setDescription("Check your level or the level of a user")
+    .addUserOption((option) =>
+      option
+        .setName("target-user")
+        .setDescription("The user to check the level of")
+        .setRequired(false)
+    ),
+
+  // deleted: true,
 };

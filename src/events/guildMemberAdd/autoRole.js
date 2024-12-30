@@ -7,7 +7,7 @@ const AutoRole = require("../../models/AutoRole");
  * @param {GuildMember} member
  */
 
-module.exports = async (client, member) => {
+module.exports = async (member, client) => {
   try {
     let guild = member.guild;
     if (!guild) return;

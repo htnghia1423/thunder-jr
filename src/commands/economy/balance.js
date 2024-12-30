@@ -1,18 +1,8 @@
-const {
-  Client,
-  Interaction,
-  ApplicationCommandOptionType,
-  Guild,
-} = require("discord.js");
+const { SlashCommandBuilder } = require("discord.js");
 const User = require("../../models/User");
 
 module.exports = {
-  /**
-   *
-   * @param {Client} client
-   * @param {Interaction} interaction
-   */
-  callback: async (client, interaction) => {
+  run: async ({ client, interaction }) => {
     if (!interaction.inGuild()) {
       interaction.reply({
         content: "This command can only be used in a server.",
@@ -45,13 +35,15 @@ module.exports = {
     );
   },
 
-  name: "balance",
-  description: "Check your or someone else's balance.",
-  options: [
-    {
-      name: "user",
-      description: "The user you want to check the balance of.",
-      type: ApplicationCommandOptionType.User,
-    },
-  ],
+  data: new SlashCommandBuilder()
+    .setName("balance")
+    .setDescription("Check your or someone else's balance.")
+    .addUserOption((option) =>
+      option
+        .setName("user")
+        .setDescription("The user you want to check the balance of.")
+        .setRequired(false)
+    ),
+
+  // deleted: true,
 };

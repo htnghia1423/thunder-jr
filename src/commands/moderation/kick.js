@@ -1,18 +1,7 @@
-const {
-  Client,
-  Interaction,
-  ApplicationCommandOptionType,
-  PermissionFlagsBits,
-} = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 
 module.exports = {
-  /**
-   *
-   * @param {Client} client
-   * @param {Interaction} interaction
-   */
-
-  callback: async (client, interaction) => {
+  run: async ({ client, interaction }) => {
     const targetUserId = interaction.options.get("target-user").value;
     const reason =
       interaction.options.get("reason")?.value || "No reason provided.";
@@ -62,25 +51,22 @@ module.exports = {
       );
     }
   },
-  name: "kick",
-  description: "Kicks a member from the server!",
-  //   devOnly: Boolean,
-  //   testOnly: Boolean,
-  // deleted: Boolean,
-  options: [
-    {
-      name: "target-user",
-      description: "The user you want to kick.",
-      required: true,
-      type: ApplicationCommandOptionType.Mentionable,
-    },
-    {
-      name: "reason",
-      description: "The reason for kicking.",
-      type: ApplicationCommandOptionType.String,
-    },
-  ],
+
+  data: new SlashCommandBuilder()
+    .setName("kick")
+    .setDescription("Kick a user from the server.")
+    .addUserOption((option) =>
+      option
+        .setName("target-user")
+        .setDescription("The user to kick.")
+        .setRequired(true)
+    )
+    .addStringOption((option) =>
+      option.setName("reason").setDescription("The reason for the kick.")
+    ),
 
   permissionsRequired: [PermissionFlagsBits.KickMembers],
   botPermissions: [PermissionFlagsBits.KickMembers],
+
+  //   deleted: true,
 };

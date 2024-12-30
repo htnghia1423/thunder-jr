@@ -1,18 +1,8 @@
-const {
-  Client,
-  Interaction,
-  ApplicationCommandOptionType,
-  PermissionFlagsBits,
-} = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const ms = require("ms");
 
 module.exports = {
-  /**
-   *
-   * @param {Client} client
-   * @param {Interaction} interaction
-   */
-  callback: async (client, interaction) => {
+  run: async ({ client, interaction }) => {
     const mentionable = interaction.options.get("target-user").value;
     const duration = interaction.options.get("duration").value;
     const reason =
@@ -90,28 +80,27 @@ module.exports = {
     }
   },
 
-  name: "timeout",
-  description: "Timeout a member from the server!",
-  options: [
-    {
-      name: "target-user",
-      description: "The user you want to timeout.",
-      type: ApplicationCommandOptionType.Mentionable,
-      required: true,
-    },
-    {
-      name: "duration",
-      description: "Timeout duration.",
-      type: ApplicationCommandOptionType.String,
-      required: true,
-    },
-    {
-      name: "reason",
-      description: "The reason for timing out.",
-      type: ApplicationCommandOptionType.String,
-    },
-  ],
+  data: new SlashCommandBuilder()
+    .setName("timeout")
+    .setDescription("Timeout a user.")
+    .addUserOption((option) =>
+      option
+        .setName("target-user")
+        .setDescription("The user to timeout.")
+        .setRequired(true)
+    )
+    .addStringOption((option) =>
+      option
+        .setName("duration")
+        .setDescription("The duration of the timeout.")
+        .setRequired(true)
+    )
+    .addStringOption((option) =>
+      option.setName("reason").setDescription("The reason for the timeout.")
+    ),
 
   permissionsRequired: [PermissionFlagsBits.MuteMembers],
   botPermissions: [PermissionFlagsBits.MuteMembers],
+
+  //   deleted: true,
 };

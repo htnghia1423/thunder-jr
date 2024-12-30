@@ -1,13 +1,8 @@
-const { Client, Interaction, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const AutoRole = require("../../models/AutoRole");
 
 module.exports = {
-  /**
-   *
-   * @param {Client} client
-   * @param {Interaction} interaction
-   */
-  callback: async (client, interaction) => {
+  run: async ({ client, interaction }) => {
     try {
       await interaction.deferReply();
 
@@ -32,8 +27,11 @@ module.exports = {
     }
   },
 
-  name: "autorole-disable",
-  description: "Disable the auto-role feature for your server.",
+  data: new SlashCommandBuilder()
+    .setName("autorole-disable")
+    .setDescription("Disable the auto-role feature for your server."),
 
   permissionsRequired: [PermissionFlagsBits.Administrator],
+
+  //   deleted: true,
 };

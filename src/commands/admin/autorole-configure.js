@@ -1,18 +1,8 @@
-const {
-  Client,
-  Interaction,
-  ApplicationCommandOptionType,
-  PermissionFlagsBits,
-} = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const AutoRole = require("../../models/AutoRole");
 
 module.exports = {
-  /**
-   *
-   * @param {Client} client
-   * @param {Interaction} interaction
-   */
-  callback: async (client, interaction) => {
+  run: async ({ client, interaction }) => {
     if (!interaction.inGuild()) {
       interaction.reply("This command can only be used in a server.");
       return;
@@ -51,17 +41,18 @@ module.exports = {
     }
   },
 
-  name: "autorole-configure",
-  description: "Configure the auto-role feature for your server.",
-  options: [
-    {
-      name: "role",
-      description: "The role to be assigned to new members.",
-      type: ApplicationCommandOptionType.Role,
-      required: true,
-    },
-  ],
+  data: new SlashCommandBuilder()
+    .setName("autorole-configure")
+    .setDescription("Configure the auto-role feature for your server.")
+    .addRoleOption((option) =>
+      option
+        .setName("role")
+        .setDescription("The role to be assigned to new members.")
+        .setRequired(true)
+    ),
 
   permissionsRequired: [PermissionFlagsBits.Administrator],
   botPermissions: [PermissionFlagsBits.ManageRoles],
+
+  //   deleled: true,
 };

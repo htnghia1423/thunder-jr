@@ -1,15 +1,10 @@
-const { Client, Interaction } = require("discord.js");
+const { SlashCommandBuilder } = require("discord.js");
 const User = require("../../models/User");
 
 const dailyAmount = 1000;
 
 module.exports = {
-  /**
-   *
-   * @param {Client} client
-   * @param {Interaction} interaction
-   */
-  callback: async (client, interaction) => {
+  run: async ({ client, interaction }) => {
     if (!interaction.inGuild()) {
       interaction.reply({
         content: "This command can only be used in a server!",
@@ -31,7 +26,6 @@ module.exports = {
       if (user) {
         const lastDailyDate = user.lastDaily.toDateString();
         const currentDate = new Date().toDateString();
-
         if (lastDailyDate === currentDate) {
           await interaction.editReply(
             "You have already claimed your daily reward today! Come back tomorrow!"
@@ -39,9 +33,10 @@ module.exports = {
           return;
         }
       } else {
-        user = new User({ ...query, lastDaily: new Date() });
+        user = new User({ ...query, lastDaily: new Date(), balance: 0 });
       }
 
+      user.lastDaily = new Date();
       user.balance += dailyAmount;
       await user.save();
 
@@ -53,6 +48,9 @@ module.exports = {
     }
   },
 
-  name: "daily",
-  description: "Get your daily reward!",
+  data: new SlashCommandBuilder()
+    .setName("daily")
+    .setDescription("Claim your daily reward!"),
+
+  // deleted: true,
 };

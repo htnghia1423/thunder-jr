@@ -1,6 +1,8 @@
-require("dotenv").config();
+require("dotenv/config");
 const { Client, IntentsBitField } = require("discord.js");
-const eventHandler = require("./handlers/eventHandler");
+const { CommandHandler } = require("djs-commander");
+const path = require("path");
+const { testServer } = require("../config.json");
 const mongoose = require("mongoose");
 
 const client = new Client({
@@ -19,7 +21,13 @@ const client = new Client({
     await mongoose.connect(process.env.MONGODB_URI);
     console.log("Connected to MongoDB");
 
-    eventHandler(client);
+    new CommandHandler({
+      client,
+      commandsPath: path.join(__dirname, "commands"),
+      eventsPath: path.join(__dirname, "events"),
+      validationsPath: path.join(__dirname, "validations"),
+      testServer,
+    });
 
     client.login(process.env.DISCORD_TOKEN);
   } catch (error) {
