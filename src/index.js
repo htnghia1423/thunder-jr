@@ -28,7 +28,7 @@ const client = new Client({
       validationsPath: path.join(__dirname, "validations"),
       devGuildIds: [testServer],
       devUserIds: devs,
-      bulkRegister: true,
+      // bulkRegister: true,
     });
 
     client.login(process.env.DISCORD_TOKEN);
